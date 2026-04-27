@@ -51,9 +51,7 @@ def Pesquisar():
                       WHERE Usuario={usuario}""").fetchall()
         
         Renda = int(renda_input.get())
-        
-        
-        
+        rows = cursor.execute(f"SELECT renda FROM Tabela1 WHERE usuario = {usuario}").fetchall()
         
         if  (Renda >= 15000):
                 resultado.config(text="Acesso Liberado",fg="#11FA76")
@@ -191,7 +189,7 @@ entrada2.pack()
 resultado = tkinter.Label(appbanco, text = "",font=("Comic Sans Ms", 16))
 resultado.pack()
 
-btn = tkinter.Button(appbanco, text="Entrar",command=Logar,activebackground="#3A556E",width=5, height=2,font=(15))
+btn = tkinter.Button(appbanco, text="Entrar",command=Pesquisar,activebackground="#3A556E",width=5, height=2,font=(15))
 btn.pack(pady=5)
 
 appbanco.mainloop()  #loop principal, impede o código de seguir e permite capturar inputs

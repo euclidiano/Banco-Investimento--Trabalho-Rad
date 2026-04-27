@@ -11,18 +11,49 @@ anuncio = open("Banco-Investimento--Trabalho-Rad/anuncios.txt","r").read()
 ad1,ad2,ad3 = anuncio.split("\n")
 
 usuario = ""
+Renda = 0
 
 
-conectar = sqlite3.connect('banco.db')
+
+conectar = sqlite3.connect('Banco-Investimento--Trabalho-Rad/bancoRenda.db')
 cursor = conectar.cursor()
- 
+
+# cursor.execute(""" CREATE TABLE Banco ( 
+#                Usuario Varchar(20) NOT NULL PRIMARY KEY,
+#                Renda int (100) NOT NULL
+#                )""")
+
+# cursor.execute("""INSERT INTO Banco
+#                 (Usuario, Renda) VALUES
+#                 ('67GOD', 0)""")
+# rows = cursor.execute(f"""SELECT Renda FROM Banco 
+#                       WHERE Usuario={usuario}""").fetchall()
+# print(rows)
+
+
+# for conta in contas:
+#     id, titular, saldo, cpf = conta
+#     print(f"""Id: {id}
+# Titular: {titular}
+# Saldo:{saldo}
+# CPF:{cpf}""")
+#     print("\n")
+
+
+conectar.commit()
 
 def Pesquisar():
         global usuario
         usuario = (usuario_input.get())
         resultado.config(text=usuario,fg="#1F222E")
+        
+        rows = cursor.execute(f"""SELECT Renda FROM Banco 
+                      WHERE Usuario={usuario}""").fetchall()
+        
         Renda = int(renda_input.get())
-        rows = cursor.execute(f"SELECT renda FROM Tabela1 WHERE usuario = {usuario}").fetchall()
+        
+        
+        
         
         if  (Renda >= 15000):
                 resultado.config(text="Acesso Liberado",fg="#11FA76")
@@ -30,6 +61,7 @@ def Pesquisar():
         elif (Renda < 15000):
                 resultado.config(text="Renda menor que 15000",fg="#FA114F")
         print(rows)
+
 
 
 def Logar():

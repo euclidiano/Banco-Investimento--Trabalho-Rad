@@ -7,7 +7,7 @@ import random
 
 
 
-anuncio = open("anuncios.txt","r").read()
+anuncio = open("Banco-Investimento--Trabalho-Rad/anuncios.txt","r").read()
 ad1,ad2,ad3 = anuncio.split("\n")
 
 usuario = ""
@@ -72,8 +72,8 @@ def lista_anuncios(appbanco):
         close.pack
 
 def resultado_investimento(a):
-        opcoes = ["1", "2", "3","4","5","6"]
-        r =random.choice(opcoes)
+        lista = ["1", "2", "3","4","5","6"]
+        r =random.choice(lista)
         if r == '1':
             a.config(text="não ganho nada",fg="#000000")
         elif r == '2':

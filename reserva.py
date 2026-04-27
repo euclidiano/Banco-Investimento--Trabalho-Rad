@@ -14,11 +14,11 @@ conectar = sqlite3.connect('Banco-Investimento--Trabalho-Rad/bancoRenda.db')
 cursor = conectar.cursor()
 
 
-def Pesquisar():
+def Pesquisa():
         global usuario
         global Renda
-        usuario = (usuario_input.get())
-        resultado.config(text=usuario,fg="#1F222E")
+        usuario = (usuarioentrada.get())
+        result.config(text=usuario,fg="#1F222E")
 
         renda_pura = cursor.execute(f"SELECT Renda FROM Banco WHERE Usuario = '{usuario}'").fetchall()
 
@@ -26,10 +26,10 @@ def Pesquisar():
 
         print(Renda)
         if  (Renda >= 15000):
-                resultado.config(text="Acesso Liberado",fg="#1FBF65")
+                result.config(text="Acesso Liberado",fg="#1FBF65")
                 telaDosRicos(appbanco)
         elif (Renda < 15000):
-                resultado.config(text="Acesso Negado",fg="#FA114F")
+                result.config(text="Acesso Negado",fg="#FA114F")
                 telaDosPobres(appbanco)
 
 
@@ -109,7 +109,7 @@ def telaDosPobres(appbanco):
         anuncios = tkinter.Toplevel(appbanco)
         anuncios.resizable(False, False)
         anuncios.title("Anuncios")
-        anuncios.geometry("400x500")
+        anuncios.geometry("600x300")
         
         nome = tkinter.Label(anuncios, text = "Bem-Vindo " + usuario,font=("Comic Sans Ms", 16))
         nome.pack()
@@ -129,6 +129,14 @@ def telaDosPobres(appbanco):
 
         close = tkinter.Button(anuncios, text="Fechar", command=anuncios.destroy)
         close.pack
+def cadstrar():
+        global usuario
+        global Renda
+        usuario = (cadUsuario.get())
+        Renda = (cadRenda.get()) 
+        cursor.execute(f"INSERT INTO Banco(Usuario, Renda) VALUES('{usuario}', {Renda})")
+
+
 
 #padrao
 appbanco = tkinter.Tk()
@@ -140,19 +148,38 @@ appbanco.update()
 appbanco.deiconify() 
  
 #p#egar o numero se nao fica igual
-usuario_input = tkinter.StringVar()
-renda_input = tkinter.StringVar()
+usuarioentrada = tkinter.StringVar()
+rendaentrada = tkinter.StringVar()
 
 txt1 = tkinter.Label(appbanco, text = "Usuario")
 txt1.pack()
-entrada1 = tkinter.Entry(appbanco, textvariable=usuario_input,width=10,font=("Arial", 18))
+entrada1 = tkinter.Entry(appbanco, textvariable=usuarioentrada,width=10,font=("Arial", 18))
 entrada1.pack(pady=10)
 
-resultado = tkinter.Label(appbanco, text = "",font=("Comic Sans Ms", 16))
-resultado.pack()
+result = tkinter.Label(appbanco, text = "",font=("Comic Sans Ms", 16))
+result.pack()
 
-btn = tkinter.Button(appbanco, text="Entrar",command=Pesquisar,activebackground="#3A556E",width=5, height=2,font=(15))
+btn = tkinter.Button(appbanco, text="Entrar",command=Pesquisa,activebackground="#3A556E",width=5, height=2,font=(15))
 btn.pack(pady=5)
+
+
+
+cadUsuario = tkinter.StringVar()
+cadRenda = tkinter.StringVar()
+
+Cadastrar = tkinter.Entry(appbanco, textvariable="--Cadastrar--",width=10,font=("Arial", 18))
+txt2 = tkinter.Label(appbanco, text = "Usuario")
+txt2.pack()
+entrada2 = tkinter.Entry(appbanco, textvariable=cadUsuario,width=10,font=("Arial", 18))
+entrada2.pack(pady=10)
+
+txt3 = tkinter.Label(appbanco, text = "Renda")
+txt3.pack()
+entrada3 = tkinter.Entry(appbanco, textvariable=cadRenda,width=10,font=("Arial", 18))
+entrada3.pack(pady=10)
+
+btn2 = tkinter.Button(appbanco, text="Cadastrar",command=cadstrar,activebackground="#3A556E",width=8, height=2,font=(15))
+btn2.pack(pady=5)
 
 appbanco.mainloop()  #loop principal, impede o código de seguir e permite capturar inputs
 

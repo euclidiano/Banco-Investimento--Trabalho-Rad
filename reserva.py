@@ -22,7 +22,7 @@ def Pesquisar():
         usuario = (usuario_input.get())
         resultado.config(text=usuario,fg="#1F222E")
         Renda = int(renda_input.get())
-        rows = cursor.execute(f"SELECT renda FROM Tabela1 WHERE usuario = {usuario}").fetchall()
+        rows = cursor.execute(f"SELECT renda FROM Tabela1 WHERE usuario = '{usuario}'").fetchall()
         
         if  (Renda >= 15000):
                 resultado.config(text="Acesso Liberado",fg="#11FA76")

@@ -66,7 +66,7 @@ def telaDosRicos(appbanco):
         investir.geometry("600x500")
         appbanco.iconbitmap("Banco-Investimento--Trabalho-Rad/icone.ico")
         
-        nome = tkinter.Label(investir, text = f"Bem-Vindo {usuario}\nSeu saldo: \n{Renda}",font=("Arial", 14))
+        nome = tkinter.Label(investir, text = f"Bem-Vindo, {usuario}\nSeu saldo: \n{Renda}",font=("Arial", 14))
         nome.pack()
 
         espa1= tkinter.Label(investir, text = "",font=(10))
@@ -79,7 +79,7 @@ def telaDosRicos(appbanco):
         close.pack
 
 
-        popup1 = tkinter.Label(investir, text = ad1,fg="#160A83",font=("Arial", 16,))
+        popup1 = tkinter.Label(investir, text = ad1,fg="#2F1FC0",font=("Arial", 16,))
         popup1.pack()
 
         lucro1 = tkinter.Label(investir, text = "valor do mercado: \n11000",font=("Arial", 12))
@@ -90,7 +90,7 @@ def telaDosRicos(appbanco):
         bt1.pack(pady=5)
 
  
-        popup2 = tkinter.Label(investir, text = ad2,fg="#B1113B",font=("Arial", 16))
+        popup2 = tkinter.Label(investir, text = ad2,fg="#C52650",font=("Arial", 16))
         popup2.pack()
 
         lucro2 = tkinter.Label(investir, text = "valor do mercado: \n900",font=("Arial", 12))
@@ -99,7 +99,7 @@ def telaDosRicos(appbanco):
         bt2 = tkinter.Button(investir, text="Investir",command=lambda: roletarussa(lucro2),activebackground="#F21111",font=(15))
  
         bt2.pack(pady=5)
-        popup3 = tkinter.Label(investir, text = ad3,fg="#D3AF10",font=("Arial", 16))
+        popup3 = tkinter.Label(investir, text = ad3,fg="#DBBA24",font=("Arial", 16))
         popup3.pack()
 
         lucro3 = tkinter.Label(investir, text = "valor do mercado: \n10000",font=("Arial", 12))
@@ -116,7 +116,7 @@ def telaDosPobres(appbanco):
         anuncios.geometry("600x500")
         appbanco.iconbitmap("Banco-Investimento--Trabalho-Rad/icone.ico")
         
-        nome = tkinter.Label(anuncios, text = f"Bem-Vindo {usuario}\nSeu saldo: \n{Renda}",font=("Arial", 16))
+        nome = tkinter.Label(anuncios, text = f"Bem-Vindo, {usuario}\nSeu saldo: \n{Renda}",font=("Arial", 16))
         nome.pack()
 
         txt1 = tkinter.Label(anuncios, text = "Você não possui o necessario para investir \n mas sinta-se a vontade para ver nossos anuncios",font=("Arial",12), fg="#CE0F2F")

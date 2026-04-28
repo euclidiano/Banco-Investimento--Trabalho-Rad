@@ -1,12 +1,8 @@
 import tkinter
-
 import sqlite3
 import random
-
 anuncio = open("Banco-Investimento--Trabalho-Rad/anuncios.txt","r").read()
-
 ad1,ad2,ad3 = anuncio.split("\n")
-
 usuario = ""
 Renda = 0
 
@@ -27,7 +23,7 @@ def Pesquisa():
 
                 print(Renda)
                 if  (Renda >= 15000):
-                        result.config(text="Investimento Liberado",fg="#1FBF65")
+                        result.config(text="Investimento Liberado",fg="#1EC72C")
                         telaDosRicos(appbanco)
                 elif (Renda < 15000):
                         result.config(text="Investimento Negado",fg="#FA114F")
@@ -70,31 +66,31 @@ def telaDosRicos(appbanco):
         investir.geometry("600x500")
         appbanco.iconbitmap("Banco-Investimento--Trabalho-Rad/icone.ico")
         
-        nome = tkinter.Label(investir, text = f"Bem-Vindo {usuario}\nSeu saldo: \n{Renda}",font=("Arial", 16))
+        nome = tkinter.Label(investir, text = f"Bem-Vindo {usuario}\nSeu saldo: \n{Renda}",font=("Arial", 14))
         nome.pack()
 
-        espa1= tkinter.Label(investir, text = "",font=(21))
+        espa1= tkinter.Label(investir, text = "",font=(10))
         espa1.pack(pady=5)
 
-        texto2 = tkinter.Label(investir, text = "Anúncios",font=(21))
+        texto2 = tkinter.Label(investir, text = "Anúncios",font=(18))
         texto2.pack() 
 
         close = tkinter.Button(investir, text="Fechar", command=investir.destroy)
         close.pack
 
-        #1
-        popup1 = tkinter.Label(investir, text = ad1,font=("Arial", 16))
+
+        popup1 = tkinter.Label(investir, text = ad1,fg="#160A83",font=("Arial", 16,))
         popup1.pack()
 
         lucro1 = tkinter.Label(investir, text = "valor do mercado: \n11000",font=("Arial", 12))
         lucro1.pack()
 
-        bt1 = tkinter.Button(investir, text="Investir",command=lambda: roletarussa(lucro1),activebackground="#8B1AA1",font=(15))
+        bt1 = tkinter.Button(investir, text="Investir",command=lambda: roletarussa(lucro1),activebackground="#4374DF",font=(15))
  
         bt1.pack(pady=5)
 
-        #2
-        popup2 = tkinter.Label(investir, text = ad2,font=("Arial", 16))
+ 
+        popup2 = tkinter.Label(investir, text = ad2,fg="#B1113B",font=("Arial", 16))
         popup2.pack()
 
         lucro2 = tkinter.Label(investir, text = "valor do mercado: \n900",font=("Arial", 12))
@@ -103,12 +99,12 @@ def telaDosRicos(appbanco):
         bt2 = tkinter.Button(investir, text="Investir",command=lambda: roletarussa(lucro2),activebackground="#F21111",font=(15))
  
         bt2.pack(pady=5)
-        popup3 = tkinter.Label(investir, text = ad3,font=("Arial", 16))
+        popup3 = tkinter.Label(investir, text = ad3,fg="#D3AF10",font=("Arial", 16))
         popup3.pack()
 
         lucro3 = tkinter.Label(investir, text = "valor do mercado: \n10000",font=("Arial", 12))
         lucro3.pack()
-        bt3 = tkinter.Button(investir, text="Investir",command=lambda: roletarussa(lucro3),activebackground="#0DC016",font=(15))
+        bt3 = tkinter.Button(investir, text="Investir",command=lambda: roletarussa(lucro3),activebackground="#E0D319",font=(15))
         
         bt3.pack(pady=5)
 
@@ -154,10 +150,9 @@ def cadstrar():
                 usuario = (cadUsuario.get())
                 Renda = (cadRenda.get()) 
                 cursor.execute(f"INSERT INTO Banco(Usuario, Renda) VALUES('{usuario}', {Renda})")
+                resultCad.config(text="Cadastrado com sucesso",fg="#1EC72C")
         except:
                 resultCad.config(text="Usuário ja existe",fg="#FA114F")
-
-#01
 
 appbanco = tkinter.Tk()
 appbanco.title("Banco genial")
@@ -169,7 +164,6 @@ appbanco.deiconify()
 appbanco.iconbitmap("Banco-Investimento--Trabalho-Rad/icone.ico")
  
 
-#se nao fica igual
 usuarioentrada = tkinter.StringVar()
 rendaentrada = tkinter.StringVar()
 
@@ -215,9 +209,7 @@ btn2 = tkinter.Button(appbanco, text="Cadastrar",command=cadstrar,activebackgrou
 btn2.pack()
 
 
-appbanco.mainloop()  #loop principal, impede o código de seguir e permite capturar inputs
-
-
+appbanco.mainloop() 
 
 conectar.commit()
 

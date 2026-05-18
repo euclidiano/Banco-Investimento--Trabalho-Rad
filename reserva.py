@@ -1,12 +1,12 @@
 import tkinter
 import sqlite3
 import random
-anuncio = open("Banco-Investimento--Trabalho-Rad/anuncios.txt","r").read()
+anuncio = open("anuncios.txt","r").read()
 ad1,ad2,ad3 = anuncio.split("\n")
 usuario = ""
 Renda = 0
 
-conectar = sqlite3.connect('Banco-Investimento--Trabalho-Rad/bancoRenda.db')
+conectar = sqlite3.connect('bancoRenda.db')
 cursor = conectar.cursor()
 
 
@@ -63,8 +63,8 @@ def telaDosRicos(appbanco):
         investir = tkinter.Toplevel(appbanco)
         investir.resizable(False, False)
         investir.title("Investimentos")
-        investir.geometry("600x500")
-        appbanco.iconbitmap("Banco-Investimento--Trabalho-Rad/icone.ico")
+        investir.geometry("600x600")
+        investir.iconbitmap("icone.ico")
         
         nome = tkinter.Label(investir, text = f"Bem-Vindo, {usuario}\nSeu saldo: \n{Renda}",font=("Arial", 14))
         nome.pack()
@@ -72,12 +72,9 @@ def telaDosRicos(appbanco):
         espa1= tkinter.Label(investir, text = "",font=(10))
         espa1.pack(pady=5)
 
+       
         texto2 = tkinter.Label(investir, text = "Anúncios",font=(18))
         texto2.pack() 
-
-        close = tkinter.Button(investir, text="Fechar", command=investir.destroy)
-        close.pack
-
 
         popup1 = tkinter.Label(investir, text = ad1,fg="#2F1FC0",font=("Arial", 16,))
         popup1.pack()
@@ -108,13 +105,17 @@ def telaDosRicos(appbanco):
         
         bt3.pack(pady=5)
 
+        close = tkinter.Button(investir, text="Sair",command=investir.destroy,activebackground="#E62626",width=8, font=(15))
+        close.pack(pady=10)
+
+
 def telaDosPobres(appbanco):
 
         anuncios = tkinter.Toplevel(appbanco)
         anuncios.resizable(False, False)
         anuncios.title("Anuncios")
-        anuncios.geometry("600x500")
-        appbanco.iconbitmap("Banco-Investimento--Trabalho-Rad/icone.ico")
+        anuncios.geometry("600x600")
+        anuncios.iconbitmap("icone.ico")
         
         nome = tkinter.Label(anuncios, text = f"Bem-Vindo, {usuario}\nSeu saldo: \n{Renda}",font=("Arial", 16))
         nome.pack()
@@ -140,8 +141,9 @@ def telaDosPobres(appbanco):
         ds3 = tkinter.Label(anuncios, text = "é o restaurante que te faz atravessar fronteiras ",font=("Arial",12))
         ds3.pack()
 
-        close = tkinter.Button(anuncios, text="Fechar", command=anuncios.destroy)
-        close.pack
+        close = tkinter.Button(anuncios, text="Sair",command=anuncios.destroy,activebackground="#CF4343",width=8, font=(15))
+        close.pack(pady=15)
+
 
 def cadstrar():
         try:
@@ -154,14 +156,15 @@ def cadstrar():
         except:
                 resultCad.config(text="Usuário ja existe",fg="#FA114F")
 
+
 appbanco = tkinter.Tk()
 appbanco.title("Banco genial")
 appbanco.resizable(False, False)
-appbanco.geometry("600x500")
+appbanco.geometry("600x600")
 appbanco.iconify() 
 appbanco.update()
 appbanco.deiconify() 
-appbanco.iconbitmap("Banco-Investimento--Trabalho-Rad/icone.ico")
+appbanco.iconbitmap("icone.ico")
  
 
 usuarioentrada = tkinter.StringVar()
@@ -207,6 +210,10 @@ resultCad.pack()
 
 btn2 = tkinter.Button(appbanco, text="Cadastrar",command=cadstrar,activebackground="#438BCF",width=8, font=(15))
 btn2.pack()
+
+close = tkinter.Button(appbanco, text="Sair",command=appbanco.destroy,activebackground="#CF4343",width=8, font=(15))
+close.pack(pady=10)
+
 
 
 appbanco.mainloop() 

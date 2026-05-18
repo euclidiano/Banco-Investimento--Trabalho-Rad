@@ -1,12 +1,13 @@
 import tkinter
+from tkinter import messagebox
 import sqlite3
 import random
-anuncio = open("Banco-Investimento--Trabalho-Rad/anuncios.txt","r").read()
+anuncio = open("anuncios.txt","r").read()
 ad1,ad2,ad3 = anuncio.split("\n")
 usuario = ""
 Renda = 0
 
-conectar = sqlite3.connect('Banco-Investimento--Trabalho-Rad/bancoRenda.db')
+conectar = sqlite3.connect('bancoRenda.db')
 cursor = conectar.cursor()
 
 
@@ -28,6 +29,10 @@ def Pesquisa():
                 elif (Renda < 15000):
                         result.config(text="Investimento Negado",fg="#FA114F")
                         telaDosPobres(appbanco)
+                elif (Renda >= 50000):
+                        result.config(text="Investimento Liberado",fg="#1EC72C")
+                        telaDosRicos(appbanco)
+                        print("VOCE EH O DONO DO BANCO")
         except:
                 result.config(text="Usuário não existe",fg="#FA114F")
 
@@ -64,20 +69,21 @@ def telaDosRicos(appbanco):
         investir.resizable(False, False)
         investir.title("Investimentos")
         investir.geometry("600x500")
-        appbanco.iconbitmap("Banco-Investimento--Trabalho-Rad/icone.ico")
+        appbanco.iconbitmap("icone.ico")
         
-        nome = tkinter.Label(investir, text = f"Bem-Vindo, {usuario}\nSeu saldo: \n{Renda}",font=("Arial", 14))
-        nome.pack()
+        if  (Renda >= 50000):
+            messagebox.showinfo("Sucesso", "Você é o dono do banco")
+            nome = tkinter.Label(investir, text = f"Bem-Vindo, Dono do Banco: {usuario}\nSeu saldo: \n{Renda}",font=("Arial", 14))
+            nome.pack()
+        else:
+            nome = tkinter.Label(investir, text = f"Bem-Vindo, {usuario}\nSeu saldo: \n{Renda}",font=("Arial", 14))
+            nome.pack()
 
         espa1= tkinter.Label(investir, text = "",font=(10))
         espa1.pack(pady=5)
 
         texto2 = tkinter.Label(investir, text = "Anúncios",font=(18))
         texto2.pack() 
-
-        close = tkinter.Button(investir, text="Fechar", command=investir.destroy)
-        close.pack
-
 
         popup1 = tkinter.Label(investir, text = ad1,fg="#2F1FC0",font=("Arial", 16,))
         popup1.pack()
@@ -114,7 +120,7 @@ def telaDosPobres(appbanco):
         anuncios.resizable(False, False)
         anuncios.title("Anuncios")
         anuncios.geometry("600x500")
-        appbanco.iconbitmap("Banco-Investimento--Trabalho-Rad/icone.ico")
+        appbanco.iconbitmap("icone.ico")
         
         nome = tkinter.Label(anuncios, text = f"Bem-Vindo, {usuario}\nSeu saldo: \n{Renda}",font=("Arial", 16))
         nome.pack()
@@ -161,7 +167,7 @@ appbanco.geometry("600x500")
 appbanco.iconify() 
 appbanco.update()
 appbanco.deiconify() 
-appbanco.iconbitmap("Banco-Investimento--Trabalho-Rad/icone.ico")
+appbanco.iconbitmap("icone.ico")
  
 
 usuarioentrada = tkinter.StringVar()

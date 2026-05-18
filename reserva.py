@@ -1,4 +1,5 @@
 import tkinter
+from tkinter import messagebox
 import sqlite3
 import random
 anuncio = open("anuncios.txt","r").read()
@@ -28,6 +29,10 @@ def Pesquisa():
                 elif (Renda < 15000):
                         result.config(text="Investimento Negado",fg="#FA114F")
                         telaDosPobres(appbanco)
+                elif (Renda >= 50000):
+                        result.config(text="Investimento Liberado",fg="#1EC72C")
+                        telaDosRicos(appbanco)
+                        print("VOCE EH O DONO DO BANCO")
         except:
                 result.config(text="Usuário não existe",fg="#FA114F")
 
@@ -66,8 +71,13 @@ def telaDosRicos(appbanco):
         investir.geometry("600x600")
         investir.iconbitmap("icone.ico")
         
-        nome = tkinter.Label(investir, text = f"Bem-Vindo, {usuario}\nSeu saldo: \n{Renda}",font=("Arial", 14))
-        nome.pack()
+        if  (Renda >= 50000):
+            messagebox.showinfo("Sucesso", "Você é o dono do banco")
+            nome = tkinter.Label(investir, text = f"Bem-Vindo, Dono do Banco: {usuario}\nSeu saldo: \n{Renda}",font=("Arial", 14))
+            nome.pack()
+        else:
+            nome = tkinter.Label(investir, text = f"Bem-Vindo, {usuario}\nSeu saldo: \n{Renda}",font=("Arial", 14))
+            nome.pack()
 
         espa1= tkinter.Label(investir, text = "",font=(10))
         espa1.pack(pady=5)

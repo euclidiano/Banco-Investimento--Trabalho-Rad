@@ -6,9 +6,9 @@ Este projeto é um protótipo de aplicativo bancário desenvolvido para demonstr
 
 
 - Participantes
-  Julia Lione Avila
-  Theo Mencalha Pereira De Oliveira
-  Leonardo Queiroz dos Santos
-  Marcelo Calmon Pereira Pimenta 
-  Andre Luiz Vitorino Pacheco
-  Luis Roberto Gouvea Vieira  
+    - Julia Lione Avila
+    - Theo Mencalha Pereira De Oliveira
+    - Leonardo Queiroz dos Santos
+    - Marcelo Calmon Pereira Pimenta 
+    - Andre Luiz Vitorino Pacheco
+    - Luis Roberto Gouvea Vieira  
